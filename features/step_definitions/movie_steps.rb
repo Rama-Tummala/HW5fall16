@@ -24,20 +24,20 @@ When /^I have opted to see movies rated: "(.*?)"$/ do |rating_list|
   # iterate over the ratings and check/uncheck the ratings
   # using the appropriate Capybara command(s)
  
- Movie.all_ratings.each do |rating|
- uncheck "ratings_#{rating}"
+ Movie.all_ratings.each do |mrating|
+ uncheck "ratings_#{mrating}"
  end
-  rating_list.split(/\s*,\s*/).each do |rating|
-  check "ratings_#{rating}"
+  rating_list.split(/\s*,\s*/).each do |mrating|
+  check "ratings_#{mrating}"
     end
 end
 
-Then /^I should see only movies rated: "(.*?)"$/ do |rating_list|
+Then /^I should see only movies rated: "(.*?)"$/ do |ratings_list|
   result = false
   
-  rating_list.split(/\s*,\s*/).each do |rating|
+  ratings_list.split(/\s*,\s*/).each do |mrating|
       all("tr").each do |tr|
-      tr.has_content?(rating)
+      tr.has_content?(mrating)
        result = true
      end
  end
